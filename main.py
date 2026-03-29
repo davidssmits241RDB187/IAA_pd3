@@ -11,11 +11,10 @@ def add_impulse_noise(image, prob=0.20):
     mask = np.random.rand(h, w) < prob
 
    
-    if len(image.shape) == 3: 
-        for c in range(image.shape[2]):
-            noisy[mask, c] = np.random.randint(0, 256, size=np.sum(mask))
-    else:  
-        noisy[mask] = np.random.randint(0, 256, size=np.sum(mask))
+   
+    for c in range(image.shape[2]):
+        noisy[mask, c] = np.random.randint(0, 256, size=np.sum(mask))
+ 
 
     return noisy.astype(np.uint8)
 
@@ -121,7 +120,7 @@ def exhibit_changes(image1, image2, title1="Image 1", title2="Image 2"):
 def main():
   
     path1 = "image1.jpg"
-    path2 = "image2.jpg"
+    path2 = "gray.jpg"
 
     img1 = load_image(path1)
     img2 = load_image(path2)
